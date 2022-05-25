@@ -5,8 +5,8 @@ import com.example.demo.constant.CommonResult;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.service.OcCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,7 +23,7 @@ public class OcCourseController {
     @Autowired
     OcCourseService ocCourseService;
     @RequestMapping(value = "/course/detail/{courseid}")
-    public CommonResult getCourse(@RequestParam("courseid") Integer courseId){
+    public CommonResult getCourse(@PathVariable("courseid") Integer courseId){
         if(courseId == null) return new CommonResult(400,"Bad Request",courseId);
 
         OcCourse ocCourse = ocCourseService.getBaseMapper().selectById(courseId);

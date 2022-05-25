@@ -1,10 +1,13 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.mapper.OcCourseMapper;
 import com.example.demo.service.OcCourseService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +20,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class OcCourseServiceImpl extends ServiceImpl<OcCourseMapper, OcCourse> implements OcCourseService {
 
+    @Autowired
+    OcCourseMapper ocCourseMapper;
+    @Override
+    public List<OcCourse> getCourseBySubjectTitle(String title) {
+        return ocCourseMapper.getCourseBySubjectTitle(title);
+    }
 }

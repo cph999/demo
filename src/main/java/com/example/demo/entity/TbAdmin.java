@@ -1,11 +1,12 @@
 package com.example.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +24,9 @@ import java.util.Set;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties({"enabled","accountNonExpired", "accountNonLocked", "credentialsNonExpired", "authorities"})
 public class TbAdmin implements Serializable , UserDetails {
 
     private static final long serialVersionUID=1L;
@@ -49,20 +53,21 @@ public class TbAdmin implements Serializable , UserDetails {
      * roles列表
      * @return
      */
-    @TableField(exist = false)
     private Set<GrantedAuthority> roles;
 
-    @TableField(exist = false)
-    private String token;
+    public TbAdmin(Integer id, String loginName, String password, String status) {
+        this.id = id;
+        this.loginName = loginName;
+        this.password = password;
+        this.status = status;
+    }
 
     @Override
-    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
 
     @Override
-    @JsonIgnore
     public String getUsername() {
         return loginName;
     }

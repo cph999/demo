@@ -1,8 +1,9 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -27,6 +28,4 @@ public class OcSubjectCourse implements Serializable {
      * 课程id 课程id
      */
     private Integer courseId;
-
-
 }

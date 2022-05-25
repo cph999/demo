@@ -39,4 +39,10 @@
         course_id, course_title, course_subtitle, course_desc, course_detail, is_free, course_price, is_discount, discount_desc, discount_price, course_level, participations_count, course_cover, course_banner, is_carousel, is_recommend, order_by, course_status, show_detail_img, detail_img, enable, del_flag, remark, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
     </sql>
 
+    <select id="getCourseBySubjectTitle" resultMap="BaseResultMap">
+        select oc.* from oc_subject as os
+        left join oc_subject_course osc on os.subject_id = osc.subject_id
+        left join oc_course as oc on osc.course_id = oc.course_id
+        where  os.subject_title= #{title}
+    </select>
 </mapper>

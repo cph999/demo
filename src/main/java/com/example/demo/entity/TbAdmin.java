@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -53,7 +54,10 @@ public class TbAdmin implements Serializable , UserDetails {
      * roles列表
      * @return
      */
+    @TableField(exist = false)
     private Set<GrantedAuthority> roles;
+    @TableField(exist = false)
+    private String token;
 
     public TbAdmin(Integer id, String loginName, String password, String status) {
         this.id = id;

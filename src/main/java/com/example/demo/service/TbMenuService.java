@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.entity.TbMenu;
-import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
  * @author alex wong
  * @since 2022-05-24
  */
-@Service
 public interface TbMenuService extends IService<TbMenu> {
 
 }

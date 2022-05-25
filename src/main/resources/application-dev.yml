@@ -9,3 +9,7 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://121.196.223.94:3306/training
+logging:
+  level:
+    sql: debug
+    web: debug

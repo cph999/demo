@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.OcSubjectCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.stereotype.Service;
+import com.example.demo.entity.OcSubjectCourse;
 
 /**
  * <p>
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
  * @author alex wong
  * @since 2022-05-24
  */
-@Service
 public interface OcSubjectCourseService extends IService<OcSubjectCourse> {
 
 }

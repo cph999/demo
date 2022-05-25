@@ -2,9 +2,10 @@ package com.example.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -31,5 +32,12 @@ public class TbRole implements Serializable {
      */
     private String name;
 
-
+    /**
+     * 关键词
+     */
+    private String keyword;
+    /**
+     * 描述
+     */
+    private String description;
 }

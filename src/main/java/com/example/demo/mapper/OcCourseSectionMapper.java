@@ -20,5 +20,7 @@ public interface OcCourseSectionMapper extends BaseMapper<OcCourseSection> {
      * @param courseVo 文章course_id
      * @return 章节
      */
+//    List<OcCourseSection> getSectionsByCoursex(OnCourseVo courseVo,Integer pageNum,Integer pageSize);
+
     List<OcCourseSection> getSectionsByCourse(OnCourseVo courseVo);
 }

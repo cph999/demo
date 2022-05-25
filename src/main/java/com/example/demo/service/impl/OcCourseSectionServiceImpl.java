@@ -27,4 +27,5 @@ public class OcCourseSectionServiceImpl extends ServiceImpl<OcCourseSectionMappe
     public List<OcCourseSection> getSectionsByCourse(OnCourseVo courseVo) {
         return sectionMapper.getSectionsByCourse(courseVo);
     }
+
 }

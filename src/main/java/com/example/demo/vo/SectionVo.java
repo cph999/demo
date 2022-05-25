@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SectionVo {
+   private Integer  pageNum;
+   private Integer pageSize;
     /**
      * 章节id 章节id
      */

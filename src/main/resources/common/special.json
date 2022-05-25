@@ -1,0 +1,20 @@
+{
+    "special":[
+        {
+            "id":1,
+            "specialName":"前端进阶之路",
+            "courseId":[6,7]
+        },
+         {
+            "id":2,
+            "specialName":"后端进阶之路",
+            "courseId":[1,2,3,7]
+        },
+         {
+            "id":3,
+            "specialName":"大数据学习之路",
+            "courseId":[4,5,6]
+        }
+    ],
+    "counts":3
+}

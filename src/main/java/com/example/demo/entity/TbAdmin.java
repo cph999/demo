@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,14 +49,20 @@ public class TbAdmin implements Serializable , UserDetails {
      * roles列表
      * @return
      */
+    @TableField(exist = false)
     private Set<GrantedAuthority> roles;
 
+    @TableField(exist = false)
+    private String token;
+
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return loginName;
     }

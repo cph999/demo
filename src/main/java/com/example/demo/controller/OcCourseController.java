@@ -4,9 +4,10 @@ package com.example.demo.controller;
 import com.example.demo.constant.CommonResult;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.service.OcCourseService;
-import com.example.demo.vo.OnCourseVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -21,11 +22,11 @@ import org.springframework.web.bind.annotation.*;
 public class OcCourseController {
     @Autowired
     OcCourseService ocCourseService;
-    @RequestMapping(value = "/course/detail")
-    public CommonResult getCourse(@RequestBody OnCourseVo onCourseVo){
-        if(onCourseVo == null) return new CommonResult(400,"Bad Request",onCourseVo);
+    @RequestMapping(value = "/course/detail/{courseid}")
+    public CommonResult getCourse(@RequestParam("courseid") Integer courseId){
+        if(courseId == null) return new CommonResult(400,"Bad Request",courseId);
 
-        OcCourse ocCourse = ocCourseService.getBaseMapper().selectById(onCourseVo.getCourseId());
+        OcCourse ocCourse = ocCourseService.getBaseMapper().selectById(courseId);
         System.out.println(ocCourse);
         return new CommonResult(200,"message",ocCourse);
     }

@@ -29,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenAuthenticationFilter tokenAuthenticationFilter;
 
+    @Autowired
+    private LogoutSuccess logoutSuccess;
+
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -55,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-//        http.logout().permitAll().logoutSuccessHandler(null);
+        http.logout().permitAll().logoutSuccessHandler(logoutSuccess);
     }
 
     @Bean

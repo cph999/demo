@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.annotation.Log;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.service.OcCourseSectionService;
@@ -32,10 +34,20 @@ public class OcCourseController {
     RedisUtil redisUtil;
 
     @Log
-    @RequestMapping(value = "/course/detail/{courseid}")
-    public CommonResult getCourse(@PathVariable("courseid") Integer courseId){
-        if(courseId == null) return new CommonResult(400,"Bad Request",courseId);
+    @RequestMapping(value = "/course/get/{pageNum}/{pageSize}")
+    public CommonResult getCourse(@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize){
+        QueryWrapper<OcCourse> w = new QueryWrapper<>();
+        QueryWrapper<OcCourse> wrapper = w.isNotNull("course_id");
 
+        Page<OcCourse> page = new Page<>(pageNum,pageSize);
+        Page<OcCourse> ocCoursePage = ocCourseService.getBaseMapper().selectPage(page, wrapper);
+        return new CommonResult(200,"message",ocCoursePage.getRecords());
+    }
+
+    @Log
+    @RequestMapping(value = "/course/detail/{courseid}")
+    public CommonResult getCourseDetail(@PathVariable("courseid") Integer courseId){
+        if(courseId == null) return new CommonResult(400,"Bad Request",courseId);
         OcCourse ocCourse = ocCourseService.getBaseMapper().selectById(courseId);
         System.out.println(ocCourse);
         return new CommonResult(200,"message",ocCourse);
@@ -48,7 +60,6 @@ public class OcCourseController {
      * @param size
      * @return
      */
-
     @Log
     @RequestMapping(value = "/comment/commentList/course/{courseId}")
     public CommonResult getCourseComment(@PathVariable("courseId") Integer courseId,@RequestParam("pageNum") Integer pageNum,@RequestParam("pageSize") Integer size){

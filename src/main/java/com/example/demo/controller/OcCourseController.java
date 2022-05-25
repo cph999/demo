@@ -2,10 +2,10 @@ package com.example.demo.controller;
 
 
 import com.example.demo.annotation.Log;
-import com.example.demo.constant.CommonResult;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.service.OcCourseService;
 import com.example.demo.util.RedisUtil;
+import com.example.demo.vo.CommonResult;
 import com.example.demo.vo.SubjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

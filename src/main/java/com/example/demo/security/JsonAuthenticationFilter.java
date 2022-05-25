@@ -49,10 +49,8 @@ public class JsonAuthenticationFilter extends AbstractAuthenticationProcessingFi
                 Token loginToken = new Token();
                 loginToken.setToken(UUID.randomUUID().toString());
                 loginToken.setUserId(loginUser.getId());
-
                 tokenService.save(loginToken);
                 loginUser.setToken(loginToken.getToken());
-
             }
             return authenticate;
         } catch (IOException e) {

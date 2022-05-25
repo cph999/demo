@@ -1,0 +1,11 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: 天亮后台
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.196.223.94:3306/training

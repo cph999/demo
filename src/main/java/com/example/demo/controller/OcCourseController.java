@@ -5,6 +5,7 @@ import com.example.demo.annotation.Log;
 import com.example.demo.constant.CommonResult;
 import com.example.demo.entity.OcCourse;
 import com.example.demo.service.OcCourseService;
+import com.example.demo.util.RedisUtil;
 import com.example.demo.vo.SubjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import java.util.List;
 public class OcCourseController {
     @Autowired
     OcCourseService ocCourseService;
+    @Autowired
+    RedisUtil redisUtil;
 
     @Log
     @RequestMapping(value = "/course/detail/{courseid}")
@@ -54,7 +57,7 @@ public class OcCourseController {
     }
 
     /**
-     * 根据subject_title查询course
+     * 根据subject_title查询course,每次查询之前先看redis
      * @param subjectVo
      * @return
      */
@@ -63,9 +66,13 @@ public class OcCourseController {
     public CommonResult getSubjectCourse(@RequestBody SubjectVo subjectVo){
         if(subjectVo == null) return new CommonResult(400,"Bad Request",subjectVo);
         String title = subjectVo.getSubject_title();
+        List<OcCourse> courses = (List<OcCourse>) redisUtil.get("title:" + title);
         List<OcCourse> courseList = null;
-        if(title!=null){
-            courseList = ocCourseService.getCourseBySubjectTitle(title);
+        if(courses == null){
+            if(title!=null){
+                courseList = ocCourseService.getCourseBySubjectTitle(title);
+                redisUtil.set("title:" + title,courseList);
+            }
         }
         return new CommonResult(200,"message",courseList);
     }

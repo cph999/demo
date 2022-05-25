@@ -3,6 +3,7 @@ package com.example.demo.security;
 import com.example.demo.entity.TbAdmin;
 import com.example.demo.entity.Token;
 import com.example.demo.service.TokenService;
+import com.example.demo.util.RedisUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +28,8 @@ public class JsonAuthenticationFilter extends AbstractAuthenticationProcessingFi
     @Autowired
     private ObjectMapper objectMapper;
 
-
+    @Autowired
+    private RedisUtil redisUtil;
     public JsonAuthenticationFilter() {
         super(new AntPathRequestMatcher("/login", "POST"));
     }
@@ -50,6 +52,7 @@ public class JsonAuthenticationFilter extends AbstractAuthenticationProcessingFi
                 loginToken.setToken(UUID.randomUUID().toString());
                 loginToken.setUserId(loginUser.getId());
                 tokenService.save(loginToken);
+                redisUtil.set("token:"+loginUser.getLoginName(),loginToken);
                 loginUser.setToken(loginToken.getToken());
             }
             return authenticate;

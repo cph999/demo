@@ -8,6 +8,7 @@ import com.example.demo.service.TbAdminRoleService;
 import com.example.demo.service.TbAdminService;
 import com.example.demo.service.TbRoleService;
 import com.example.demo.service.TokenService;
+import com.example.demo.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,12 +45,16 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private TbRoleService roleService;
     @Autowired
     private TbAdminRoleService adminRoleService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
         String tokenStr = request.getHeader("token");
+        String loginName = (String) request.getAttribute("loginName");
         if (StringUtils.isNotBlank(tokenStr)) {
             Token tokenDb = tokenService
                     .lambdaQuery()

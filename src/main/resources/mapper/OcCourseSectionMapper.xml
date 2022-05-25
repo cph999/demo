@@ -26,4 +26,8 @@
         section_id, course_id, section_name, section_type, section_video, can_try, order_by, parent_id, remark, del_flag, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
     </sql>
 
+    <!--    select ocs.* from oc_course_section as ocs where ocs.course_id = 1;-->
+    <select id="getSectionsByCourse" resultMap="BaseResultMap">
+        select ocs.* from oc_course_section as ocs where ocs.course_id = #{courseId}
+    </select>
 </mapper>

@@ -45,4 +45,9 @@
         left join oc_course as oc on osc.course_id = oc.course_id
         where  os.subject_title= #{title}
     </select>
+<!--    select os.* from oc_course as oc-->
+<!--    left join oc_subject_course as osc on oc.course_id = osc.course_id-->
+<!--    left join oc_subject as os on osc.subject_id = os.subject_id-->
+<!--    where oc.course_id = 1;-->
+
 </mapper>

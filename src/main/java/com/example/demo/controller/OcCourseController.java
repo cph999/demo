@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.annotation.Log;
 import com.example.demo.entity.OcCourse;
+import com.example.demo.service.OcCourseSectionService;
 import com.example.demo.service.OcCourseService;
 import com.example.demo.util.RedisUtil;
 import com.example.demo.vo.CommonResult;
@@ -25,6 +26,8 @@ import java.util.List;
 public class OcCourseController {
     @Autowired
     OcCourseService ocCourseService;
+    @Autowired
+    OcCourseSectionService sectionService;
     @Autowired
     RedisUtil redisUtil;
 
@@ -70,11 +73,50 @@ public class OcCourseController {
         List<OcCourse> courseList = null;
         if(courses == null){
             if(title!=null){
+                System.out.println("缓存未命中");
                 courseList = ocCourseService.getCourseBySubjectTitle(title);
                 redisUtil.set("title:" + title,courseList);
             }
         }
+        courseList = courses;
         return new CommonResult(200,"message",courseList);
+    }
+
+    /**
+     * 新增课程
+     * @param course
+     * @return
+     */
+    @Log
+    @RequestMapping("course/add")
+    public CommonResult addCourse(@RequestBody OcCourse course){
+        boolean save = ocCourseService.save(course);
+        if(save){
+            return new CommonResult(200,"添加成功",null);
+        }
+        return new CommonResult(200,"添加失败",null);
+    }
+    @Log
+    @RequestMapping("course/delete/")
+    public CommonResult deleteCourse(@RequestBody List<Integer> courseIds){
+            if(courseIds != null) {
+               for(Integer id:courseIds){
+                   int i = ocCourseService.getBaseMapper().deleteById(id);
+               }
+                return new CommonResult(200,"删除成功"+courseIds.size()+"条数据",null);
+            }
+
+        return new CommonResult(403,"错误请求",null);
+    }
+    @Log
+    @RequestMapping("course/edit")
+    public CommonResult editCourse(@RequestBody OcCourse course){
+        if(course == null)  return new CommonResult(400,"错误请求",null);
+        boolean b = ocCourseService.updateById(course);
+        if(b){
+            return new CommonResult(200,"success",null);
+        }
+        return new CommonResult(400,"错误请求",null);
     }
 }
 

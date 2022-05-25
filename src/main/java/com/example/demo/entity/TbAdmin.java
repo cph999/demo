@@ -49,7 +49,6 @@ public class TbAdmin implements Serializable , UserDetails {
      */
     private String status;
 
-//    private String username;
     /**
      * roles列表
      * @return

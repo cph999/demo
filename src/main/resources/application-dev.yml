@@ -28,3 +28,6 @@ logging:
   level:
     sql: debug
     web: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml

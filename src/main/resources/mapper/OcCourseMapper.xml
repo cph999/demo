@@ -43,7 +43,7 @@
         select oc.* from oc_subject as os
         left join oc_subject_course osc on os.subject_id = osc.subject_id
         left join oc_course as oc on osc.course_id = oc.course_id
-        where  os.subject_title= #{title}
+        where  os.subject_title like CONCAT('%',#{title},'%')
     </select>
 <!--    select os.* from oc_course as oc-->
 <!--    left join oc_subject_course as osc on oc.course_id = osc.course_id-->

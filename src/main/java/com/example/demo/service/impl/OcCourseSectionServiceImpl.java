@@ -25,6 +25,12 @@ public class OcCourseSectionServiceImpl extends ServiceImpl<OcCourseSectionMappe
     OcCourseSectionMapper sectionMapper;
     @Override
     public List<OcCourseSection> getSectionsByCourse(OnCourseVo courseVo) {
+        if(courseVo != null){
+            Integer pageNum = courseVo.getPageNum();
+            Integer pageSize = courseVo.getPageSize();
+            pageNum = (pageNum - 1)* pageSize;
+            courseVo.setPageNum(pageNum);
+        }
         return sectionMapper.getSectionsByCourse(courseVo);
     }
 

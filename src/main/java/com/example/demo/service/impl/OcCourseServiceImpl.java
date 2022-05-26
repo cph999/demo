@@ -24,6 +24,8 @@ public class OcCourseServiceImpl extends ServiceImpl<OcCourseMapper, OcCourse> i
     OcCourseMapper ocCourseMapper;
     @Override
     public List<OcCourse> getCourseBySubjectTitle(String title) {
+        System.out.println(ocCourseMapper.getCourseBySubjectTitle(title));
+        System.out.println(title);
         return ocCourseMapper.getCourseBySubjectTitle(title);
     }
 }

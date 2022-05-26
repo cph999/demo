@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 @Data
 public class OnCourseVo {
 
+    private Integer  pageNum;
+    private Integer pageSize;
+    private String special;
     /**
      * 课程id 主键
      */

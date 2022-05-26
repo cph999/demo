@@ -28,6 +28,6 @@
 
     <!--    select ocs.* from oc_course_section as ocs where ocs.course_id = 1;-->
     <select id="getSectionsByCourse" resultMap="BaseResultMap">
-        select ocs.* from oc_course_section as ocs where ocs.course_id = #{courseId}
+        select ocs.* from oc_course_section as ocs where ocs.course_id = #{courseId} limit #{pageNum},#{pageSize}
     </select>
 </mapper>

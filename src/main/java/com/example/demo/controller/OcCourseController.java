@@ -9,10 +9,12 @@ import com.example.demo.service.OcCourseSectionService;
 import com.example.demo.service.OcCourseService;
 import com.example.demo.util.RedisUtil;
 import com.example.demo.vo.CommonResult;
+import com.example.demo.vo.OnCourseVo;
 import com.example.demo.vo.SubjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,14 +36,26 @@ public class OcCourseController {
     RedisUtil redisUtil;
 
     @Log
-    @RequestMapping(value = "/course/get/{pageNum}/{pageSize}")
-    public CommonResult getCourse(@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize){
-        QueryWrapper<OcCourse> w = new QueryWrapper<>();
-        QueryWrapper<OcCourse> wrapper = w.isNotNull("course_id");
+    @RequestMapping(value = "/course/get")
+    public CommonResult getCourse(@RequestBody OnCourseVo course){
+        if(course == null) return new CommonResult(400,"msg",null);
+        if(course.getPageNum() == null) course.setPageNum(1);
+        if(course.getPageSize() == null) course.setPageSize(10);
 
-        Page<OcCourse> page = new Page<>(pageNum,pageSize);
-        Page<OcCourse> ocCoursePage = ocCourseService.getBaseMapper().selectPage(page, wrapper);
-        return new CommonResult(200,"message",ocCoursePage.getRecords());
+        QueryWrapper<OcCourse> wrapper = new QueryWrapper<>();
+        wrapper.isNotNull("course_id")
+                .like("course_title",course.getCourseTitle());
+        List<OcCourse> lists = ocCourseService.getCourseBySubjectTitle(course.getSpecial());
+        System.out.println("list:"+lists.size());
+        lists.forEach(System.out::println);
+        Page<OcCourse> page = new Page<>(course.getPageNum(), course.getPageSize());
+        Page<OcCourse> pages = ocCourseService.getBaseMapper().selectPage(page, wrapper);
+        List<OcCourse> result= new ArrayList<>();
+        for(OcCourse course1:lists){
+            if(pages.getRecords().contains(course1))result.add(course1);
+        }
+        pages.setRecords(result);
+        return new CommonResult(200,"message",pages);
     }
 
     @Log

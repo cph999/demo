@@ -97,7 +97,7 @@ public class OcCourse implements Serializable {
     /**
      * 课程轮播图 banner图
      */
-    private Integer courseBanner;
+    private String courseBanner;
 
     /**
      * 是否轮播 是否进行轮播

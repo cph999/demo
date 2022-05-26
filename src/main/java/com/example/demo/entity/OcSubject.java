@@ -1,12 +1,13 @@
 package com.example.demo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -41,7 +42,7 @@ public class OcSubject implements Serializable {
     /**
      * 专题轮播 专题的banner图
      */
-    private Integer subjectBanner;
+    private String subjectBanner;
 
     /**
      * 排序字段 排序字段

@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.annotation.Log;
 import com.example.demo.entity.OcCourse;
+import com.example.demo.entity.OcSubjectCourse;
 import com.example.demo.service.OcCourseSectionService;
 import com.example.demo.service.OcCourseService;
+import com.example.demo.service.OcSubjectCourseService;
 import com.example.demo.util.RedisUtil;
 import com.example.demo.vo.CommonResult;
 import com.example.demo.vo.OnCourseVo;
@@ -34,6 +36,8 @@ public class OcCourseController {
     OcCourseSectionService sectionService;
     @Autowired
     RedisUtil redisUtil;
+    @Autowired
+    OcSubjectCourseService subjectCourseService;
 
     @Log
     @RequestMapping(value = "/course/get")
@@ -113,24 +117,26 @@ public class OcCourseController {
      * @return
      */
     @Log
-    @RequestMapping("course/add")
-    public CommonResult addCourse(@RequestBody OcCourse course){
+    @RequestMapping("/course/add/{sid}")
+    public CommonResult addCourse(@RequestBody OcCourse course,@PathVariable("sid") Integer sid){
         boolean save = ocCourseService.save(course);
+        subjectCourseService.save(new OcSubjectCourse(sid,course.getCourseId()));
         if(save){
             return new CommonResult(200,"添加成功",null);
         }
         return new CommonResult(200,"添加失败",null);
     }
     @Log
-    @RequestMapping("course/delete/")
+    @RequestMapping("course/delete")
     public CommonResult deleteCourse(@RequestBody List<Integer> courseIds){
             if(courseIds != null) {
                for(Integer id:courseIds){
+                   QueryWrapper<OcSubjectCourse> wrapper = new QueryWrapper<OcSubjectCourse>().eq("course_id",id);
+                   subjectCourseService.getBaseMapper().delete(wrapper);
                    int i = ocCourseService.getBaseMapper().deleteById(id);
                }
                 return new CommonResult(200,"删除成功"+courseIds.size()+"条数据",null);
             }
-
         return new CommonResult(403,"错误请求",null);
     }
     @Log

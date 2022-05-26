@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -71,6 +70,6 @@ public class ControllerExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public Result exceptionHandler(HttpServletRequest request, Exception e) {
 		logger.error("Request URL : {}, Exception :", request.getRequestURL(), e);
-		return Result.create(500, "异常错误");
+		return Result.create(500, e.getMessage());
 	}
 }

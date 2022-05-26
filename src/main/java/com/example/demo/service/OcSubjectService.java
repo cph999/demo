@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.entity.OcSubject;
 
@@ -12,5 +13,12 @@ import com.example.demo.entity.OcSubject;
  * @since 2022-05-24
  */
 public interface OcSubjectService extends IService<OcSubject> {
-
+    /**
+     * 分页条件查询
+     * @param subject
+     * @param start
+     * @param size
+     * @return
+     */
+    IPage<OcSubject> selectPage(OcSubject subject, Integer start, Integer size);
 }

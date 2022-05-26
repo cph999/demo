@@ -79,7 +79,7 @@ public class OcCourseController {
     @PostMapping(value = "/subject/list")
     public CommonResult getSubjectCourse(@RequestBody SubjectVo subjectVo){
         if(subjectVo == null) return new CommonResult(400,"Bad Request",subjectVo);
-        String title = subjectVo.getSubject_title();
+        String title = subjectVo.getSubjectTitle();
         List<OcCourse> courses = (List<OcCourse>) redisUtil.get("title:" + title);
         List<OcCourse> courseList = null;
         if(courses == null){

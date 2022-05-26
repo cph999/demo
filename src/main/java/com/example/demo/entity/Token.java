@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * 
+ * @author gqz20
  * @TableName tb_token
  */
 @TableName(value ="tb_token")

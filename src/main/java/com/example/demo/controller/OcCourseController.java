@@ -49,17 +49,16 @@ public class OcCourseController {
         QueryWrapper<OcCourse> wrapper = new QueryWrapper<>();
         wrapper.isNotNull("course_id")
                 .like("course_title",course.getCourseTitle());
-        List<OcCourse> lists = ocCourseService.getCourseBySubjectTitle(course.getSpecial());
-        System.out.println("list:"+lists.size());
-        lists.forEach(System.out::println);
         Page<OcCourse> page = new Page<>(course.getPageNum(), course.getPageSize());
         Page<OcCourse> pages = ocCourseService.getBaseMapper().selectPage(page, wrapper);
+        if(course.getSpecial() == null ) return new CommonResult(200,"success",pages);
+        List<OcCourse> lists = ocCourseService.getCourseBySubjectTitle(course.getSpecial());
         List<OcCourse> result= new ArrayList<>();
         for(OcCourse course1:lists){
             if(pages.getRecords().contains(course1))result.add(course1);
         }
         pages.setRecords(result);
-        return new CommonResult(200,"message",pages);
+        return new CommonResult(200,"success",pages);
     }
 
     @Log

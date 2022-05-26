@@ -1,0 +1,242 @@
+{
+    "course": [
+        {
+            "id": 1,
+            "courseTitle": "JAVA程序设计",
+            "isOpen": 1,
+            "isFree": 0,
+            "disCount": 0.8,
+            "price": 10.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 1,
+                    "sectionName": "JAVA的基本数据类型"
+                },
+                 {
+                    "id": 2,
+                    "courseId": 1,
+                    "sectionName": "class关键字"
+                },
+                 {
+                    "id": 3,
+                    "courseId": 1,
+                    "sectionName": "面向对象"
+                }
+            ]
+        },
+         {
+            "id": 2,
+            "courseTitle": "Python程序设计",
+            "isOpen": 1,
+            "isFree": 1,
+            "disCount": 0.8,
+            "price": 10.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 2,
+                    "sectionName": "Python的基本数据类型"
+                },
+                  {
+                    "id": 2,
+                    "courseId": 2,
+                    "sectionName": "条件判断"
+                },
+                  {
+                    "id": 3,
+                    "courseId": 2,
+                    "sectionName": "循环的使用"
+                }
+            ]
+        },
+         {
+            "id": 3,
+            "courseTitle": "C语言程序设计",
+            "isOpen": 1,
+            "isFree": 1,
+            "disCount": 0.8,
+            "price": 10.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 3,
+                    "sectionName": "变量和数据类型"
+                },
+                 {
+                    "id": 2,
+                    "courseId": 3,
+                    "sectionName": "C语言输入输出"
+                },
+                 {
+                    "id": 3,
+                    "courseId": 3,
+                    "sectionName": "预处理命令"
+                },
+                 {
+                    "id": 4,
+                    "courseId": 3,
+                    "sectionName": "指针"
+                }
+            ]
+        },
+         {
+            "id": 4,
+            "courseTitle": "数据库教程",
+            "isOpen": 1,
+            "isFree": 0,
+            "disCount": 0.7,
+            "price": 42.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 4,
+                    "sectionName": "SQL 语法"
+                },
+                 {
+                    "id": 2,
+                    "courseId": 4,
+                    "sectionName": "SQL 数据类型"
+                },
+                 {
+                    "id": 3,
+                    "courseId": 4,
+                    "sectionName": "SQL 重命名表"
+                },
+                 {
+                    "id": 4,
+                    "courseId": 4,
+                    "sectionName": "SQL LEFT JOIN"
+                }
+            ]
+        },
+         {
+            "id": 5,
+            "courseTitle": "Linux教程",
+            "isOpen": 1,
+            "isFree": 0,
+            "disCount": 0.5,
+            "price": 90.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 5,
+                    "sectionName": "Linux文件和目录管理"
+                },
+                  {
+                    "id": 2,
+                    "courseId": 5,
+                    "sectionName": "Linux打包（归档）和压缩"
+                },
+                  {
+                    "id": 3,
+                    "courseId": 5,
+                    "sectionName": "Vim文本编辑器"
+                },
+                  {
+                    "id": 4,
+                    "courseId": 5,
+                    "sectionName": "Linux软件安装"
+                },
+                  {
+                    "id": 5,
+                    "courseId": 5,
+                    "sectionName": "Linux用户和用户组管理"
+                },
+                  {
+                    "id": 6,
+                    "courseId": 5,
+                    "sectionName": "Linux权限管理"
+                }
+            ]
+        },
+         {
+            "id": 6,
+            "courseTitle": "JavaScript进阶教程",
+            "isOpen": 0,
+            "isFree": 0,
+            "disCount": 0.88,
+            "price": 59.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 6,
+                    "sectionName": "JavaScript闭包的应用"
+                },
+                  {
+                    "id": 2,
+                    "courseId": 6,
+                    "sectionName": "JavaScript的this指向问题"
+                },
+                  {
+                    "id": 3,
+                    "courseId": 6,
+                    "sectionName": "JavaScript继承"
+                },
+                  {
+                    "id": 4,
+                    "courseId": 6,
+                    "sectionName": "JavaScript严格模式"
+                },
+                  {
+                    "id": 5,
+                    "courseId": 6,
+                    "sectionName": "解析Promise原理"
+                },
+                  {
+                    "id": 6,
+                    "courseId": 6,
+                    "sectionName": "解析深拷贝原理"
+                },
+                  {
+                    "id": 7,
+                    "courseId": 6,
+                    "sectionName": "解析响应式原理"
+                }
+            ]
+        },
+         {
+            "id": 7,
+            "courseTitle": "Go语言入门教程",
+            "isOpen": 1,
+            "isFree": 0,
+            "disCount": 0.8,
+            "price": 19.99,
+            "disDesc": "限时优惠",
+            "sections": [
+                {
+                    "id": 1,
+                    "courseId": 7,
+                    "sectionName": "Go语言基本语法"
+                },
+                 {
+                    "id": 1,
+                    "courseId": 7,
+                    "sectionName": "Go语言容器"
+                },
+                 {
+                    "id": 1,
+                    "courseId": 7,
+                    "sectionName": "流程控制"
+                },
+                 {
+                    "id": 1,
+                    "courseId": 7,
+                    "sectionName": "Go语言函数"
+                },
+                 {
+                    "id": 1,
+                    "courseId": 7,
+                    "sectionName": "Go语言接口"
+                }
+            ]
+        }
+    ],
+    "counts": 7
+}

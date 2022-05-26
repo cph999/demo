@@ -3,7 +3,9 @@ package com.example.demo.security;
 import com.example.demo.entity.TbAdmin;
 import com.example.demo.entity.TbAdminRole;
 import com.example.demo.entity.TbRole;
-import com.example.demo.service.*;
+import com.example.demo.service.TbAdminRoleService;
+import com.example.demo.service.TbAdminService;
+import com.example.demo.service.TbRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,12 +32,10 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
     private TbAdminService adminService;
     @Autowired
     private TbRoleService roleService;
-    @Autowired
-    private TbMenuService menuService;
+
     @Autowired
     private TbAdminRoleService adminRoleService;
-    @Autowired
-    private TbRoleMenuService roleMenuService;
+
 
 
     @Override

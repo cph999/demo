@@ -129,7 +129,5 @@ public class OcSubjectController {
         }
         return Result.ok("delete subject success");
     }
-
-
 }
 

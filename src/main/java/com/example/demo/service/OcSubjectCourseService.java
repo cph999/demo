@@ -13,4 +13,11 @@ import com.example.demo.entity.OcSubjectCourse;
  */
 public interface OcSubjectCourseService extends IService<OcSubjectCourse> {
 
+    /**
+     * Update association.
+     *
+     * @param sid the sid
+     * @return the boolean
+     */
+    Boolean updateAssociation(Integer sid);
 }

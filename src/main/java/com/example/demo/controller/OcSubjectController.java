@@ -122,12 +122,14 @@ public class OcSubjectController {
 
     @DeleteMapping("delete/{sid}")
     @Transactional(rollbackFor = Exception.class)
-    public Result deleteSubject(@PathVariable Long sid) {
+    public Result deleteSubject(@PathVariable Integer sid) {
         boolean b = subjectService.removeById(sid);
+        subjectCourseService.updateAssociation(sid);
         if (!b) {
             throw new PersistenceException("删除subject失败");
         }
         return Result.ok("delete subject success");
     }
+
 }
 

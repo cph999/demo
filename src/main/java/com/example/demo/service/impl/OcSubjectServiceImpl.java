@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -32,7 +33,18 @@ public class OcSubjectServiceImpl extends ServiceImpl<OcSubjectMapper, OcSubject
         OcSubject orElse = Optional.ofNullable(subject).orElse(new OcSubject());
         QueryWrapper<OcSubject> wrapper = Wrappers.query(orElse);
 
-        Page<OcSubject> page = this.page(new Page<>(start, size), wrapper);
+        LambdaQueryWrapper<OcSubject> wrapper1 = Wrappers
+                .lambdaQuery(OcSubject.class)
+                .eq(orElse.getSubjectId() != null, OcSubject::getSubjectId, orElse.getSubjectId())
+                .like(orElse.getSubjectTitle() != null, OcSubject::getSubjectTitle, orElse.getSubjectTitle())
+                .like(orElse.getSubjectDesc() != null, OcSubject::getSubjectDesc, orElse.getSubjectDesc())
+                .like(orElse.getSubjectBanner() != null, OcSubject::getSubjectBanner, orElse.getSubjectBanner())
+                .eq(orElse.getOrderBy() != null, OcSubject::getOrderBy, orElse.getOrderBy())
+                .eq(orElse.getSubjectStatus() != null, OcSubject::getSubjectStatus, orElse.getSubjectStatus())
+                .like(orElse.getRemark() != null, OcSubject::getRemark, orElse.getRemark())
+                .eq(orElse.getEnable() != null, OcSubject::getEnable, orElse.getEnable());
+
+        Page<OcSubject> page = this.page(new Page<>(start, size), wrapper1);
 
         return page;
     }

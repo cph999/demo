@@ -35,11 +35,9 @@ public class OcCourseSectionController {
 
     @Log
     @RequestMapping(value = "/course/section/add")
-    public CommonResult addSections(@RequestBody List<OcCourseSection> sections){
+    public CommonResult addSections(@RequestBody OcCourseSection sections){
         if(sections == null) return new CommonResult(400,"Bad Request", null);
-        for (OcCourseSection section : sections) {
-            sectionService.save(section);
-        }
+            sectionService.save(sections);
         return new CommonResult(200,"message",sections);
     }
     @Log

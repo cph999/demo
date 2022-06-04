@@ -12,12 +12,12 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://121.196.223.94:3306/training
+    url: ****
     hikari:
       max-lifetime: 60000
   redis:
-    host: 121.196.223.94
-    port: 6379
+    host: yourIp
+    port: yourPort
     database: 0
     jedis:
       pool:

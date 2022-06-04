@@ -65,7 +65,6 @@ public class ControllerExceptionHandler {
 	 *
 	 * @param request 请求
 	 * @param e       异常信息
-	 * @return
 	 */
 	@ExceptionHandler(Exception.class)
 	public Result exceptionHandler(HttpServletRequest request, Exception e) {
